@@ -31,7 +31,9 @@ public class LibroService implements ILibroService {
 
     @Override
     public void eliminarLibro(Libro libro) {
-       
+       libroRepository.delete(libro);
+
+        
     }
 
     
