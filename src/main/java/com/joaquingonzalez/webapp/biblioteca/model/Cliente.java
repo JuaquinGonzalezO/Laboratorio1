@@ -20,5 +20,6 @@ public class Cliente {
     private String apellido;
     private String telefono;
     @ManyToOne()
-    private Libro libro;
+    private Prestamo prestamo;
+    
 }

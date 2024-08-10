@@ -54,7 +54,7 @@ public class CategoriaController {
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             response.put("message", "error");
-            response.put("error", "hubi un error al crear la categoria");
+            response.put("error", "hubo un error al crear la categoria");
             return ResponseEntity.badRequest().body(response);
         }
     }
