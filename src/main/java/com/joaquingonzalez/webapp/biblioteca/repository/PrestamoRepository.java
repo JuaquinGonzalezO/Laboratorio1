@@ -1,5 +1,9 @@
 package com.joaquingonzalez.webapp.biblioteca.repository;
 
-public interface PrestamoRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.joaquingonzalez.webapp.biblioteca.model.Prestamo;
+
+public interface PrestamoRepository extends JpaRepository<Prestamo, Long> {
 
 }

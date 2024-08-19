@@ -52,9 +52,14 @@ public class EmpleadoController {
     public ResponseEntity<Map<String, String>>agregarEmpleado(@RequestBody Empleado empleado){
         Map<String,String>response = new HashMap<>();
         try {
-            empleadoService.guardarEmpleado(empleado);
-            response.put("message", "empleado creado con exito");
-            return ResponseEntity.ok(response);
+            if(!empleadoService.verificacionDpiDuplicado(empleado)){
+                empleadoService.guardarEmpleado(empleado);
+                response.put("message", "empleado creado con exito");
+                return ResponseEntity.ok(response);
+            }else{
+              response.put("message", "el Dpi se encuetra duplicado");
+              return ResponseEntity.badRequest().body(response);
+            }
         } catch (Exception e) {
            response.put("message", "error");
            response.put("error", "Hubo un error al crear el empleado");
@@ -67,6 +72,7 @@ public class EmpleadoController {
         Map<String, String> response = new HashMap<>();
         try {
             Empleado empleado = empleadoService.buscarEmpleadoPorId(id);
+            if(!empleadoService.verificacionDpiDuplicado(empleadoNuevo)){
             empleado.setNombre(empleadoNuevo.getNombre());
             empleado.setApellido(empleadoNuevo.getApellido());
             empleado.setTelefono(empleadoNuevo.getTelefono());
@@ -75,9 +81,13 @@ public class EmpleadoController {
             empleadoService.guardarEmpleado(empleado);
             response.put("message", "Modificado");
             return ResponseEntity.ok(response);
+            }else{
+                response.put("message", "el Dpi se encuetra duplicado");
+              return ResponseEntity.badRequest().body(response);
+            }
         } catch (Exception e) {
             response.put("message", "Error");
-            response.put("err", "no se pudo editar :v");
+            response.put("err", "no se pudo editar");
             return ResponseEntity.badRequest().body(response);
         }
     }

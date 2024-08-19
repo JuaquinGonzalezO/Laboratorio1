@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.joaquingonzalez.webapp.biblioteca.model.Categoria;
 
+
 public interface ICategoriaService {
 
     public List<Categoria>listarCategorias();
@@ -13,4 +14,6 @@ public interface ICategoriaService {
     public Categoria buscarCategoriaPorId(Long id);
 
     public void eliminarCategoria(Categoria categoria);
+
+    public Boolean verificacionCategoriasDuplicada(Categoria categoria);
 }
